@@ -1,0 +1,7 @@
+AuthUserFile /var/www/vhosts/icsystems.com.br/httpdocs/neuraltb-dev/follow_up/.htpasswd
+AuthType Basic
+AuthName "Follow Up"
+
+<Files "followUp.html">
+  Require valid-user
+</Files>
