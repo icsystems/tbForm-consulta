@@ -108,6 +108,10 @@ $(document).ready(function(){
                 lookup: years
         });
 
+	$('#data_sida').autocomplete({
+                lookup: years
+        });
+
         $('#exameSida').change(function(){
                 var dep = new Array();
                 dep[0] = '#divDataSida';
@@ -297,6 +301,12 @@ $(document).ready(function(){
 				required: true
 			},
                         data_tratamento:{
+                                minlength: 4,
+                                GreaterThanBirthYear : true,
+                                LowerThanCurrentYear: true,
+                                maxlength: 4
+                        },
+			data_sida:{
                                 minlength: 4,
                                 GreaterThanBirthYear : true,
                                 LowerThanCurrentYear: true,
