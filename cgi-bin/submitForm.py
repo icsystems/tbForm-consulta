@@ -24,11 +24,11 @@ def createXML(keys, dictValues):
 	xmlStr = '<?xml version="1.0" encoding="utf-8"?>'
 	xmlStr += '<documento>'
 	xmlStr += '<paciente>'
-	xmlStr += '<exames>'
+	xmlStr += '<consulta>'
 	for k in keys:
 		if k != 'score':
 			xmlStr += '<%s>%s</%s>'%(k,dictValues[k],k)
-	xmlStr += '</exames>'
+	xmlStr += '</consulta>'
 	xmlStr += '</paciente>'
 	xmlStr += '</documento>'
 	return xmlStr
@@ -54,7 +54,7 @@ def Main():
 	<html>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<head>
-			<title> Formulário Exames </title>
+			<title> Formulário ECnsulta</title>
 			<style type='text/css'>
 			<!--
 				@import url(../css/submitForm_style.css);
@@ -62,9 +62,9 @@ def Main():
 			</style>
 		</head>
 		<body>
-			<div id='header'>
-				$score
-			</div>
+		<div id='header'>
+		Formul&aacute;rio Consulta
+		</div>
 			<div id='content'>
 				<div id='leftpanel'>
 					<table>
