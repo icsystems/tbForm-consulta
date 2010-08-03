@@ -188,59 +188,32 @@ $(document).ready(function(){
 		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 	});
 
-	//Probabilidade de TBativa
-	$('#probabilidadeTBAtivaAposEstudoRX').change(function(){
-		var alta = new Array();
-		alta[0] = '#divCativacao';
-		alta[1] = '#divPadraoTipico';
-		alta[2] = '#divCompativel';
-		alta[3] = '#divAtipico';
+	$('#padrao').change(function(){
+
 		var baixa = new Array();
 		baixa[0] = '#divcasoBaixaProbabilidade';
-		// Se alta ou media, disponibilizar colunas listadas a cima
-		if($(this).val()=='alta' || $(this).val() == 'media'){
-			for(div in alta){
-				if($(alta[div]).css('display') != 'block')
-					$(alta[div]).toggle(function() {
-						$(this).css('background-color', hlcolor);
-						$(this).animate({backgroundColor : "white"}, 4000);
-					});
-			}
-			for(div in baixa){
-				var elems = $('*', baixa[div]);
-				$(elems).each(function(){
-					var element = $(this);
-					if (   element[0].nodeName != 'FIELDSET'
-					    && element[0].nodeName != 'SMALL'
-					    && element[0].nodeName != 'OPTION')
-						$(this).removeClass('required');
-				});
+
+		//Definindo a probabilidade
+		if ($(this).val() == 'padraoTipico')
+			$('#probabilidadeTBAtivaAposEstudoRX').val('Alta');
+		else if ($(this).val() == 'padraoCompativel')
+                        $('#probabilidadeTBAtivaAposEstudoRX').val('Media');
+		else if ($(this).val() == 'padraoAtipico')
+		{	
+			$('#probabilidadeTBAtivaAposEstudoRX').val('Baixa');
+                        for(div in baixa){
+                                if($(baixa[div]).css('display') != 'block')
+                                        $(baixa[div]).toggle(function() {
+                                                $(this).css('background-color', hlcolor);
+                                                $(this).animate({backgroundColor : "white"}, 4000);
+                                        });
+                        }
+		}
+		
+		if($(this).val() != 'padraoAtipico')
+			for(div in baixa)
 				if($(baixa[div]).css('display') != 'none')
 					$(baixa[div]).toggle();
-			}
-		}
-		// Se baixa, ocultar colunas listadas a cima
-		if($(this).val()=='baixa'){
-			for(div in alta){
-				var elems = $('*', alta[div]);
-				$(elems).each(function(){
-					var element = $(this);
-					if (   element[0].nodeName != 'FIELDSET'
-					    && element[0].nodeName != 'SMALL'
-					    && element[0].nodeName != 'OPTION')
-						$(this).removeClass('required');
-				});
-				if($(alta[div]).css('display') != 'none')
-					$(alta[div]).toggle();
-			}
-			for(div in baixa){
-				if($(baixa[div]).css('display') != 'block')
-					$(baixa[div]).toggle(function() {
-						$(this).css('background-color', hlcolor);
-						$(this).animate({backgroundColor : "white"}, 4000);
-					});
-			}
-		}
 	});
 
         //O diagnostico eh tb???
@@ -316,7 +289,8 @@ $(document).ready(function(){
 			},
 			probabilidadeTBAtivaAposEstudo:{
 				required: true,
-				number: true
+				number: true,
+				max: 100
 			},
 			data_rx:{
 				date: true,
@@ -324,7 +298,8 @@ $(document).ready(function(){
 			},
 			probabilidadeTBClinicoRadiologica: {
 				required: true,
-				number: true
+				number: true,
+				max: 100
 			},
                         data_tratamento:{
 				min: 1910,
