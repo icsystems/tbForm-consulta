@@ -330,6 +330,7 @@ $(document).ready(function(){
 				number: true
 			},
                         data_tratamento:{
+				min: 1910,
                                 minlength: 4,
                                 maxlength: 4
                         },
@@ -337,6 +338,7 @@ $(document).ready(function(){
 				required: true
 			},
 			data_sida:{
+				min: 1910,
                                 minlength: 4,
                                 maxlength: 4
                         }
