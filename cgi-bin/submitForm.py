@@ -26,7 +26,14 @@ def createXML(keys, dictValues):
 	xmlStr += '<paciente>'
 	xmlStr += '<consulta>'
 	for k in keys:
-		if k != 'score':
+		if type(dictValues[k]).__name__ == 'list':
+			xmlStr += '<%s>'%(k)
+			for v in dictValues[k]:
+				if 'outros' in v:
+					continue
+				xmlStr += '<%s_item> %s </%s_item>'%(k,v,k)
+			xmlStr += '</%s>'%(k)
+		else:
 			xmlStr += '<%s>%s</%s>'%(k,dictValues[k],k)
 	xmlStr += '</consulta>'
 	xmlStr += '</paciente>'
@@ -54,7 +61,7 @@ def Main():
 	<html>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<head>
-			<title> Formulário ECnsulta</title>
+			<title> Formul&aacute;rio Consulta</title>
 			<style type='text/css'>
 			<!--
 				@import url(../css/submitForm_style.css);
@@ -80,7 +87,7 @@ def Main():
 						<tr>
 							<th>%s </th>
 							<td>$%s</td>
-						<tr>
+						</tr>
 		"""%(k,k,)
 	templateDef+="""
 						</tbody>

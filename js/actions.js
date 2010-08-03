@@ -55,6 +55,31 @@ var resistent = new Array();
 
 //Document is ready, let's play
 $(document).ready(function(){
+	
+	
+	//Controle de caracteres estranhos
+	$('#data_tratamento').keypress(function(e){
+		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
+			return false;
+	});
+
+	
+	$('#data_sida').keypress(function(e){
+		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
+			return false;
+	});
+
+	
+	$('#escoreRedeNeural').keypress(function(e){
+		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
+			return false;
+	});
+
+	$('#probabilidadeTBClinicoRadiologica').keypress(function(e){
+		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
+			return false;
+	});
+
 	var hlcolor = '#FFF8C6';
 	var d = new Date();
 	var cYear = d.getFullYear();
@@ -271,52 +296,55 @@ $(document).ready(function(){
 
 	$('div.secondary').css('display', 'none');
 
-	//--------------------------------------------
-	//Alterar o validate. Nao esquecer. VIT
-	//--------------------------------------------
 
 	$('#form_consulta').validate({
 		rules: {
-			soroColetado: {
+			tratamentoAnterior: {
 				required: true
 			},
-			sangueColetado: {
+			localTuberculose: {
 				required: true
 			},
-			resultadoLeitura:{
+			desfechoTratamento: {
+				required: true
+			},
+			exameSida:{
+				required: true
+			},
+			sida: {
+				required: true
+			},
+			escoreRedeNeural:{
+				required: true
+			},
+			probabilidadeTBAtivaAposEstudo:{
 				required: true,
 				number: true
-			},
-			pt:{
-				required: true
-			},
-			HIVteste:{
-				required: true
-			},
-			probabilidadeTBAtiva:{
-				required: true
 			},
 			data_rx:{
 				date: true,
 				required: true
 			},
+			probabilidadeTBClinicoRadiologica: {
+				required: true,
+				number: true
+			},
                         data_tratamento:{
                                 minlength: 4,
-                                GreaterThanBirthYear : true,
-                                LowerThanCurrentYear: true,
                                 maxlength: 4
                         },
+			diagnostico: {
+				required: true
+			},
 			data_sida:{
                                 minlength: 4,
-                                GreaterThanBirthYear : true,
-                                LowerThanCurrentYear: true,
                                 maxlength: 4
                         }
 		}
 	});
 
         //Load previous exams
-        var sUrl="/cgi-bin/neuraltb/retrieveExames.py";
+        var sUrl="./cgi-bin/retrieveExames.py";
         var edits = new Object();
 
         var returned = $.ajax({
