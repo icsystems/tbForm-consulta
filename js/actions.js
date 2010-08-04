@@ -198,7 +198,7 @@ $(document).ready(function(){
 		if ($(this).val() == 'padraoTipico')
 			$('#probabilidadeTBAtivaAposEstudoRX').val('Alta');
 		else if ($(this).val() == 'padraoCompativel')
-                        $('#probabilidadeTBAtivaAposEstudoRX').val('Media');
+                        $('#probabilidadeTBAtivaAposEstudoRX').val('Média');
 		else if ($(this).val() == 'padraoAtipico')
 		{	
 			$('#probabilidadeTBAtivaAposEstudoRX').val('Baixa');
