@@ -58,7 +58,7 @@ $(document).ready(function(){
 	
 	
 	//Controle de caracteres estranhos
-	$('#data_tratamento').keypress(function(e){
+	$('#data_ultimo_tratamento').keypress(function(e){
 		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
 			return false;
 	});
@@ -86,9 +86,10 @@ $(document).ready(function(){
 
         $('#tratamentoAnterior').change(function(){
                 var dep = new Array();
-                dep[0] = '#divDataTratamento';
+                dep[0] = '#divDataUltimoTratamento';
                 dep[1] = '#divLocalTuberculose';
                 dep[2] = '#divDesfecho';
+		dep[3] = '#divQuantidadeDeTratamentos';
                 // Se sim, disponibilizar colunas listadas a cima
                 if($(this).val()=='sim'){
                         for(div in dep){
@@ -129,7 +130,7 @@ $(document).ready(function(){
         for (i=cYear-100; i <=cYear; i++)
                 years.push(i.toString());
 	
-        $('#data_tratamento').autocomplete({
+        $('#data_ultimo_tratamento').autocomplete({
                 lookup: years
         });
 
@@ -301,7 +302,7 @@ $(document).ready(function(){
 				number: true,
 				max: 100
 			},
-                        data_tratamento:{
+                        data_ultimo_tratamento:{
 				min: 1910,
                                 minlength: 4,
                                 maxlength: 4

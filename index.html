@@ -39,13 +39,24 @@
 					<option value='nao'>N&atilde;o</option>
 				</select>
 			</div>
-			<div id='divDataTratamento' class='secondary'>
-				<label for='data_tratamento'> Ano do tratamento:</label>
-				<input  name="data_tratamento" id="data_tratamento" type="text" class='number' maxlength=4 size='8'/>
+			<div id='divDataUltimoTratamento' class='secondary'>
+				<label for='data_ultimo_tratamento'> Ano do último tratamento:</label>
+				<input  name="data_ultimo_tratamento" id="data_ultimo_tratamento" type="text" class='number' maxlength=4 size='8'/>
+			</div>
+			<div id='divQuantidadeDeTratamentos' class='secondary'>
+				<label for='quantidadeDeTratamentos'>Quantidade de Tratamentos: </label>
+				<select name='quantidadeDeTratamentos' id='quantidadeDeTratamentos' class='selectOne' style="width:50px;">
+					<option value='' selected>  ----  </option>
+					<option value='1'> 1 	 </option>
+					<option value='2'> 2	 </option>
+					<option value='3'> 3	 </option>
+					<option value='4'> 4	 </option>
+					<option value='5'> 5 ou mais</option>
+				</select>
 			</div>
 			<div id='divLocalTuberculose' class='secondary'>
 				<label for='divLocalTuberculose'>Local da Tuberculose:</label>
-				<select name='localTuberculose' id='localTuberculose' class='selectOneSinais sinais'>
+				<select name='localTuberculose' id='localTuberculose' class='selectOne '>
 					<option value='ignorado' selected> Ignorado  </option>
 					<option value='pulmonar'> Pulmonar  </option>
 					<option value='extrapulmonar'> Extra-pulmonar  </option>
@@ -54,7 +65,7 @@
 			</div>
 			<div id='divDesfecho' class='secondary'>
 				<label for='desfechoTratamento'>Desfecho do Tratamento:</label>
-				<select name='desfechoTratamento' id='desfechoTratamento' class='selectOneSinais'>
+				<select name='desfechoTratamento' id='desfechoTratamento' class='selectOne'>
 					<option value='ignorado' selected> Ignorado  </option>
 					<option value='cura'> Cura  </option>
 					<option value='tratamentoCompleto'> Tratamento Completo (sem exame de escarro)  </option>
@@ -67,7 +78,7 @@
 			<legend>HIV/SIDA</legend>
 			<div id='divExameSIDA' class='primary required'>
 				<label for='exameSida'>Realizou o exame:</label>
-				<select name='exameSida' id='exameSida' class='selectOne sinais'>
+				<select name='exameSida' id='exameSida' class='selectOne '>
 					<option value='ignorado' selected> Ignorado  </option>
 					<option value='sim'> Sim  </option>
 					<option value='nao'> N&atilde;o  </option>
@@ -75,7 +86,7 @@
 			</div>
 			<div id='divSIDA' class='secondary'>
 				<label for='sida'>Resultado:</label>
-				<select name='sida' id='sida' class='selectOne sinais'>
+				<select name='sida' id='sida' class='selectOne '>
 					<option value='pendente' selected> Pendente  </option>
 					<option value='sim'> Positivo </option>
 					<option value='nao'> Negativo  </option>
