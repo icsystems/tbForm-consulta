@@ -9,21 +9,21 @@
 //global functions
 
 function getScrollXY() {
-        var myWidth = 0, myHeight = 0;
-        if( typeof( window.innerWidth ) == 'number' ) {
-                //Non-IE
-                myWidth = window.innerWidth;
-                myHeight = window.innerHeight;
-        } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-                //IE 6+ in 'standards compliant mode'
-                myWidth = document.documentElement.clientWidth;
-                myHeight = document.documentElement.clientHeight;
-        } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-                //IE 4 compatible
-                myWidth = document.body.clientWidth;
-                myHeight = document.body.clientHeight;
-        }
-        return [ myWidth, myHeight ];
+	var myWidth = 0, myHeight = 0;
+		if( typeof( window.innerWidth ) == 'number' ) {
+			//Non-IE
+			myWidth = window.innerWidth;
+			myHeight = window.innerHeight;
+		} else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+			//IE 6+ in 'standards compliant mode'
+			myWidth = document.documentElement.clientWidth;
+			myHeight = document.documentElement.clientHeight;
+		} else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+			//IE 4 compatible
+			myWidth = document.body.clientWidth;
+			myHeight = document.body.clientHeight;
+		}
+		return [ myWidth, myHeight ];
 }
 
 if(typeof(String.prototype.trim) === "undefined")
@@ -55,21 +55,9 @@ var resistent = new Array();
 
 //Document is ready, let's play
 $(document).ready(function(){
-	
-	
+
 	//Controle de caracteres estranhos
-	$('#data_ultimo_tratamento').keypress(function(e){
-		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
-			return false;
-	});
 
-	
-	$('#data_sida').keypress(function(e){
-		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
-			return false;
-	});
-
-	
 	$('#escoreRedeNeural').keypress(function(e){
 		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
 			return false;
@@ -84,98 +72,12 @@ $(document).ready(function(){
 	var d = new Date();
 	var cYear = d.getFullYear();
 
-        $('#tratamentoAnterior').change(function(){
-                var dep = new Array();
-                dep[0] = '#divDataUltimoTratamento';
-                dep[1] = '#divLocalTuberculose';
-                dep[2] = '#divDesfecho';
-		dep[3] = '#divQuantidadeDeTratamentos';
-                // Se sim, disponibilizar colunas listadas a cima
-                if($(this).val()=='sim'){
-                        for(div in dep){
-                                var elems = $('*', dep[div]);
-                                $(elems).each(function(){
-                                        var element = $(this);
-                                        if (   element[0].nodeName != 'FIELDSET'
-                                            && element[0].nodeName != 'SMALL'
-                                            && element[0].nodeName != 'OPTION')
-                                                $(this).addClass('required');
-                                                $(this).removeAttr('disabled');
-                                });
-                                if($(dep[div]).css('display') != 'block')
-                                        $(dep[div]).toggle(function() {
-                                                $(this).css('background-color', hlcolor);
-                                                $(this).animate({backgroundColor : "white"}, 4000);
-                                        });
-                        }
-                } else {
-                        for(div in dep){
-                                var elems = $('*', dep[div]);
-                                $(elems).each(function(){
-                                        var element = $(this);
-                                        if (   element[0].nodeName != 'FIELDSET'
-                                            && element[0].nodeName != 'SMALL'
-                                            && element[0].nodeName != 'OPTION')
-                                                $(this).removeClass('required');
-                                                $(this).attr('disabled', 'disabled');
-                                });
-                                if($(dep[div]).css('display') != 'none')
-                                        $(dep[div]).toggle();
-                        }
-                }
-        });
 
         //Checking aids exam date
         years = new Array();
         for (i=cYear-100; i <=cYear; i++)
                 years.push(i.toString());
-	
-        $('#data_ultimo_tratamento').autocomplete({
-                lookup: years
-        });
 
-	$('#data_sida').autocomplete({
-                lookup: years
-        });
-
-        $('#exameSida').change(function(){
-                var dep = new Array();
-                dep[0] = '#divDataSida';
-                dep[1] = '#divSIDA';
-                // Se sim, disponibilizar colunas listadas a cima
-                if($(this).val()=='sim'){
-                        for(div in dep){
-                                var elems = $('*', dep[div]);
-                                $(elems).each(function(){
-                                        var element = $(this);
-                                        if (   element[0].nodeName != 'FIELDSET'
-                                            && element[0].nodeName != 'SMALL'
-                                            && element[0].nodeName != 'OPTION')
-                                                $(this).addClass('required');
-                                                $(this).removeAttr('disabled');
-                                });
-                                if($(dep[div]).css('display') != 'block')
-                                        $(dep[div]).toggle(function() {
-                                                $(this).css('background-color', hlcolor);
-                                                $(this).animate({backgroundColor : "white"}, 4000);
-                                        });
-                        }
-                } else {
-                        for(div in dep){
-                                var elems = $('*', dep[div]);
-                                $(elems).each(function(){
-                                        var element = $(this);
-                                        if (   element[0].nodeName != 'FIELDSET'
-                                            && element[0].nodeName != 'SMALL'
-                                            && element[0].nodeName != 'OPTION')
-                                                $(this).removeClass('required');
-                                                $(this).attr('disabled', 'disabled');
-                                });
-                                if($(dep[div]).css('display') != 'none')
-                                        $(dep[div]).toggle();
-                        }
-                }
-        });
 
 	$('#data_rx').datepicker({
 		dateFormat: 'dd/mm/yy',
@@ -270,19 +172,10 @@ $(document).ready(function(){
 
 	$('#form_consulta').validate({
 		rules: {
-			tratamentoAnterior: {
-				required: true
-			},
 			localTuberculose: {
 				required: true
 			},
 			desfechoTratamento: {
-				required: true
-			},
-			exameSida:{
-				required: true
-			},
-			sida: {
 				required: true
 			},
 			escoreRedeNeural:{
@@ -302,19 +195,14 @@ $(document).ready(function(){
 				number: true,
 				max: 100
 			},
-                        data_ultimo_tratamento:{
+            data_ultimo_tratamento:{
 				min: 1910,
-                                minlength: 4,
-                                maxlength: 4
-                        },
+                minlength: 4,
+                maxlength: 4
+            },
 			diagnostico: {
 				required: true
-			},
-			data_sida:{
-				min: 1910,
-                                minlength: 4,
-                                maxlength: 4
-                        }
+			}
 		}
 	});
 

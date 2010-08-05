@@ -30,74 +30,6 @@
 	<div id='maincontent'>
 	<form id='form_consulta' id='form_consulta' action='cgi-bin/submitForm.py' method='POST'>
 		<fieldset>
-			<legend>Hist&oacute;rico de Tuberculose</legend>
-			<div id='divTratamentoAnterior' class='primary required'>
-				<label for='tratamentoAnterior'>Tratamento Anterior para TB: </label>
-				<select name='tratamentoAnterior' id='tratamentoAnterior' class='selectOne'>
-					<option value='ignorado'>Ignorado</option>
-					<option value='sim'>Sim</option>
-					<option value='nao'>N&atilde;o</option>
-				</select>
-			</div>
-			<div id='divDataUltimoTratamento' class='secondary'>
-				<label for='data_ultimo_tratamento'> Ano do último tratamento:</label>
-				<input  name="data_ultimo_tratamento" id="data_ultimo_tratamento" type="text" class='number' maxlength=4 size='8'/>
-			</div>
-			<div id='divQuantidadeDeTratamentos' class='secondary'>
-				<label for='quantidadeDeTratamentos'>Quantidade de Tratamentos: </label>
-				<select name='quantidadeDeTratamentos' id='quantidadeDeTratamentos' class='selectOne' style="width:50px;">
-					<option value='' selected>  ----  </option>
-					<option value='1'> 1 	 </option>
-					<option value='2'> 2	 </option>
-					<option value='3'> 3	 </option>
-					<option value='4'> 4	 </option>
-					<option value='5'> 5 ou mais</option>
-				</select>
-			</div>
-			<div id='divLocalTuberculose' class='secondary'>
-				<label for='divLocalTuberculose'>Local da Tuberculose:</label>
-				<select name='localTuberculose' id='localTuberculose' class='selectOne '>
-					<option value='ignorado' selected> Ignorado  </option>
-					<option value='pulmonar'> Pulmonar  </option>
-					<option value='extrapulmonar'> Extra-pulmonar  </option>
-					<option value='pulmonarEExtrapulmonar'> Pulmonar e Extra-pulmonar  </option>
-				</select>
-			</div>
-			<div id='divDesfecho' class='secondary'>
-				<label for='desfechoTratamento'>Desfecho do Tratamento:</label>
-				<select name='desfechoTratamento' id='desfechoTratamento' class='selectOne'>
-					<option value='ignorado' selected> Ignorado  </option>
-					<option value='cura'> Cura  </option>
-					<option value='tratamentoCompleto'> Tratamento Completo (sem exame de escarro)  </option>
-					<option value='abandono'> Abandono  </option>
-					<option value='falencia'> Falência  </option>
-				</select>
-			</div>	
-		</fieldset>
-		<fieldset>
-			<legend>HIV/SIDA</legend>
-			<div id='divExameSIDA' class='primary required'>
-				<label for='exameSida'>Realizou o exame:</label>
-				<select name='exameSida' id='exameSida' class='selectOne '>
-					<option value='ignorado' selected> Ignorado  </option>
-					<option value='sim'> Sim  </option>
-					<option value='nao'> N&atilde;o  </option>
-				</select>
-			</div>
-			<div id='divSIDA' class='secondary'>
-				<label for='sida'>Resultado:</label>
-				<select name='sida' id='sida' class='selectOne '>
-					<option value='pendente' selected> Pendente  </option>
-					<option value='sim'> Positivo </option>
-					<option value='nao'> Negativo  </option>
-				</select>
-			</div>
-			<div id='divDataSida' class='secondary'>
-				<label for='data_sida'> Ano do Exame:</label>
-				<input  name="data_sida" id="data_sida" type="text" class='number' maxlength=4 size='8'/>
-			</div>
-		</fieldset>
-		<fieldset>
 			<legend>Avalia&ccedil;&atilde;o Cl&iacute;nica</legend>
 			<div id='divEscoreRedeNeural' class='primary required'>
 				<label for='escoreRedeNeural'> Escore da Rede Neural: </label>
@@ -143,10 +75,15 @@
 				<label for='data_rx'> Data do RX:</label>
 				<input name="data_rx" id="data_rx" type="text" />
 			</div>
-                        <div id='divProbabilidadeTBClinicoRadiologica' class='primary required'>
-                                <label for='probabilidadeTBClinicoRadiologica'> Probabilidade de TB Cl&iacute;nico-Radiol&oacute;gica: </label>
-                                <input name='probabilidadeTBClinicoRadiologica' id='probabilidadeTBClinicoRadiologica' type='text' size='4' maxlength='3'/> %
-                        </div>
+			<div id='divProbabilidadeTBClinicoRadiologica' class='primary required'>
+					<label for='probabilidadeTBClinicoRadiologica'> Probabilidade de TB Cl&iacute;nico-Radiol&oacute;gico: </label>
+					<input name='probabilidadeTBClinicoRadiologica' id='probabilidadeTBClinicoRadiologica' type='text' size='4' maxlength='3'/> %
+			</div>
+			<div id='divFrasesAjuda'>
+				<p><b>Padrão típico </b>[Infiltrado em lobo(s) superior(es) e/ou segmento apical de lobo inferior]</p>
+				<p><b>Compatível </b>[Alargamento mediastinal ou linf. Hilar, padrão militar, ou derrame pleural]</p>
+				<p><b>Atípico </b>[Qualquer outro padrão]</p>
+			</div>
                 </fieldset>
                 <fieldset>
                         <legend> Diagn&oacute;stico </legend>
