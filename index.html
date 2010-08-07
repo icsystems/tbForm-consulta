@@ -1,20 +1,20 @@
 <html>
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Consulta - Preencha todos os campos do Formul&aacute;rio abaixo</title>
-        <link rel="stylesheet" type="text/css" href="./css/styles.css" /> 
-        <link rel="stylesheet" type="text/css" href="./css/form_style.css" />
-        <link rel="stylesheet" type="text/css" href="./css/page_style.css" />
-        <link rel="stylesheet" type="text/css" href="./css/JScrollPane.css" />
-        <link rel="stylesheet" type="text/css" href="./css/smoothness/jquery-ui.css" />
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Consulta - Preencha todos os campos do Formul&aacute;rio abaixo</title>
+	<link rel="stylesheet" type="text/css" href="./css/styles.css" /> 
+	<link rel="stylesheet" type="text/css" href="./css/form_style.css" />
+	<link rel="stylesheet" type="text/css" href="./css/page_style.css" />
+	<link rel="stylesheet" type="text/css" href="./css/JScrollPane.css" />
+	<link rel="stylesheet" type="text/css" href="./css/smoothness/jquery-ui.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type='text/javascript' src="./js/JScrollPane.js"></script> 
-        <script type='text/javascript' src='./js/messages_ptbr.js'></script>
+	<script type='text/javascript' src='./js/messages_ptbr.js'></script>
 	<script type='text/javascript' src='./js/tb.validation.jquery.js'></script>
-        <script type="text/javascript" src="js/actions.js"></script>
+	<script type="text/javascript" src="js/actions.js"></script>
 </head>
 <body>
 <div id='menu'>
@@ -23,9 +23,6 @@
 	</ul>
 </div>
 <div id='mainFrame'>
-<!--<div id='divTriagem'>
-	Carregando <img src='images/loading.gif'>
-</div>-->
 <div id='content'>
 	<div id='maincontent'>
 	<form id='form_consulta' id='form_consulta' action='cgi-bin/submitForm.py' method='POST'>
@@ -48,14 +45,14 @@
 				</select>
 			</div>
 			<div id='divPadrao' class='primary required'>
-                                <label for='padrao'> Padr&atilde;o: </label>
-                                <select name='padrao' id='padrao' class='selectOne'>
-                                        <option value=''        	  > ------      	 </option>
-                                        <option value='padraoTipico'	  > T&iacute;pico        </option>
-                                        <option value='padraoAtipico'     > At&iacute;pico  	 </option>
-                                        <option value='padraoCompativel'  > Compat&iacute;vel    </option>
-                                </select>
-                        </div>
+				<label for='padrao'> Padr&atilde;o: </label>
+				<select name='padrao' id='padrao' class='selectOne'>
+					<option value=''        	  > ------      	 </option>
+					<option value='padraoTipico'	  > T&iacute;pico        </option>
+					<option value='padraoAtipico'     > At&iacute;pico  	 </option>
+					<option value='padraoCompativel'  > Compat&iacute;vel    </option>
+				</select>
+			</div>
 			<div id='divcasoBaixaProbabilidade' class='secondary'>
 				<label for='casoBaixaProbabilidade' > &nbsp;</label>
 				<select name='casoBaixaProbabilidade' id='casoBaixaProbabilidade' class='selectOne'>
@@ -84,62 +81,106 @@
 				<p><b>Compatível </b>[Alargamento mediastinal ou linf. Hilar, padrão militar, ou derrame pleural]</p>
 				<p><b>Atípico </b>[Qualquer outro padrão]</p>
 			</div>
-                </fieldset>
-                <fieldset>
-                        <legend> Diagn&oacute;stico </legend>
-                        <div id='divDiagnostico' class='primary required'>
-                                <label for='diagnostico'> Diagn&oacute;stico: </label>
-                                <select name='diagnostico' id='diagnostico' class='selectOne required'>
-                                        <option value="melhora"    type="radio" />TB pulmonar       </option>
-                                        <option value="inalterado" type="radio" />TB Extra-pulmonar </option>
-                                        <option value="piorado"    type="radio" />Pulmonar+Extra    </option>
-                                        <option value="nao_tb"     type="radio" />N&atilde;o TB   </option>
-                                        <option value="ignorado"   type="radio" />Ignorado   </option>
-                                </select>
-                        </div>
-                        <div id='divDiagnosticoDiferenteTB' class='secondary'>
-                                <fieldset>
-                                        <legend> Em caso de outro Diagnóstico diferente de TB </legend>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="asma"      type="checkbox" /> Asma
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="rinossinusite"      type="checkbox" /> Rinossinusite
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="dpco_infeccao"     type="checkbox"> DPOC + Infecção brônquica inespecífica
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="pneumo_bacteria"   type="checkbox" /> Pneumonia
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="sequela_infeccao"  type="checkbox"> Infeção brônquica inespecífica
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="micose_pulmonar"   type="checkbox" /> Micose pulmonar
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="pneumoconiose"     type="checkbox"> Pneumoconiose
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="ca_de_pulmao"      type="checkbox" /> CA de pulmão
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB" value="falencia_cardiaca" type="checkbox" /> Falência cardíaca
-                                        </label>
-                                        <label for='diagnosticoDiferenteTB' class='labelRadio'>
-                                                <input name="diagnosticoDiferenteTB"  id='diagnosticoDifOutros' value="outros" type="checkbox" /> Outro:
-                                        </label>
+		</fieldset>
+		<fieldset>
+			<legend> Comorbidades </legend>
+			<div id='divComorbidades' class='primary required'>
+				<fieldset>
+					<label for='comorbidades_0' class='labelCheckbox'>
+					<input id='comorbidades_0' name="comorbidades" value="doenca_renal_cronica"    type="checkbox" /> Doença Renal Crônica
+					</label>
+					<label for='comorbidades_1' class='labelCheckbox'>
+					<input id='comorbidades_1' name="comorbidades" value="alcoolismo"     type="checkbox" /> Alcoolismo
+					</label>
+					<label for='comorbidades_2' class='labelCheckbox'>
+					<input id='comorbidades_2' name="comorbidades" value="neoplasia_maligna"   type="checkbox" /> Neoplasia maligna
+					</label>
+					<label for='comorbidades_3' class='labelCheckbox'>
+					<input id='comorbidades_3' name="comorbidades" value="diabetes_tipo_ii"      type="checkbox" /> Diabetes Tipo II
+					</label>
+					<label for='comorbidades_4' class='labelCheckbox'>
+					<input id='comorbidades_4' name="comorbidades" value="dpoc"     type="checkbox" /> DPOC
+					</label>
+					<label for='comorbidades_5' class='labelCheckbox'>
+					<input id='comorbidades_5'name="comorbidades" value="hepatopatia" type="checkbox" /> Hepatopatia
+					</label>
+					<label for='comorbidades_6' class='labelCheckbox'>
+					<input id='comorbidades_6' name="comorbidades" value="uso_corticoides"     type="checkbox" /> Uso de corticóides
+					</label>
+					<label for='comorbidades_7' class='labelCheckbox'>
+					<input id='comorbidades_7' name="comorbidades" value="transplante_orgaos"     type="checkbox" /> Transplante de órgãos
+					</label>
+					<label for='comorbidades_8' class='labelCheckbox'>
+					<input id='comorbidades_8' name="comorbidades" value="silicose_pulmonar"     type="checkbox" /> Silicose Pulmonar
+					</label>
+					<label for='comorbidades_9' class='labelCheckbox'>
+					<input id='comorbidades_9' name="comorbidades" value="doenca_pulmonar_difusa"     type="checkbox" /> Doença pulmonar difusa
+					</label>
+					<label for='nenhuma_comorbidade' class='labelCheckbox'>
+					<input id='nenhuma_comorbidade' name="comorbidades" value="nao"     type="checkbox" /> Sem comorbidades
+					</label>
+					<label for='comorbidades_outros' class='labelCheckbox'>
+						<input id='comorbidades_outros'name="comorbidades" value="outros" type="checkbox" /> Outros:
+					</label>
+					<input name="comorbidadesOutros" type="text" size='30' disabled/>
+				</fieldset>
+			</div>
+		</fieldset>
+		<fieldset>
+		<legend> Diagn&oacute;stico </legend>
+			<div id='divDiagnostico' class='primary required'>
+				<label for='diagnostico'> Diagn&oacute;stico: </label>
+				<select name='diagnostico' id='diagnostico' class='selectOne required'>
+					<option value="melhora"    type="radio" />TB pulmonar       </option>
+					<option value="inalterado" type="radio" />TB Extra-pulmonar </option>
+					<option value="piorado"    type="radio" />Pulmonar+Extra    </option>
+					<option value="nao_tb"     type="radio" />N&atilde;o TB   </option>
+					<option value="ignorado"   type="radio" />Ignorado   </option>
+				</select>
+			</div>
+			<div id='divDiagnosticoDiferenteTB' class='secondary'>
+				<fieldset>
+				<legend> Em caso de outro Diagnóstico diferente de TB </legend>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="asma"      type="checkbox" /> Asma
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="rinossinusite"      type="checkbox" /> Rinossinusite
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="dpco_infeccao"     type="checkbox"> DPOC + Infecção brônquica inespecífica
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="pneumo_bacteria"   type="checkbox" /> Pneumonia
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="sequela_infeccao"  type="checkbox"> Infeção brônquica inespecífica
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="micose_pulmonar"   type="checkbox" /> Micose pulmonar
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="pneumoconiose"     type="checkbox"> Pneumoconiose
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="ca_de_pulmao"      type="checkbox" /> CA de pulmão
+					</label>
+					<label for='diagnosticoDiferenteTB' class='labelRadio'>
+						<input name="diagnosticoDiferenteTB" value="falencia_cardiaca" type="checkbox" /> Falência cardíaca
+					</label>
+						<label for='diagnosticoDiferenteTB' class='labelRadio'>
+					<input name="diagnosticoDiferenteTB"  id='diagnosticoDifOutros' value="outros" type="checkbox" /> Outro:
+					</label>
 					<lable>
-                                        <input name="outro_diagnostico_sim" maxlength="100" type="text" disabled />
-                                	</label>
-                                </fieldset>
-                        </div>
-                        <div id='divObservacoes' class='primary'>
-                                <label for='observacoes' class='labelTextarea'> Observações</label>
-                                <textarea name="observacoes" rows="5"></textarea>
-                        </div>
-                </fieldset>
+						<input name="outro_diagnostico_sim" maxlength="100" type="text" disabled />
+					</label>
+				</fieldset>
+			</div>
+			<div id='divObservacoes' class='primary'>
+				<label for='observacoes' class='labelTextarea'> Observações</label>
+				<textarea name="observacoes" rows="5"></textarea>
+			</div>
+		</fieldset>
 		<fieldset>
 			<div class='submit'><input value="Enviar Formul&aacute;rio" class='inputButton'  type="submit"></div>
 		</fieldset>
