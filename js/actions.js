@@ -111,7 +111,8 @@ $(document).ready(function(){
                                                 $(this).animate({backgroundColor : "white"}, 4000);
                                         });
                         }
-		}
+		}else
+			$('#probabilidadeTBAtivaAposEstudoRX').val('');
 		
 		if($(this).val() != 'padraoAtipico')
 			for(div in baixa)
@@ -155,20 +156,48 @@ $(document).ready(function(){
                         }
                 }
         });
-        $('#diagnosticoDifOutros').click(function(){
-                if($(this).is(':checked')){
-                        $('').attr('checked', 'true');
-                        $('input[name=outro_diagnostico_sim]').removeAttr('disabled');
-                        return;
-                }
-                $(this).removeAttr('checked');
-                $('input[name=outro_diagnostico_sim]').val('');
-                $('input[name=outro_diagnostico_sim]').attr('disabled', 'true');
-                return;
-        });
+
+	$('#diagnosticoDifOutros').click(function(){
+		if($(this).is(':checked')){
+			$('').attr('checked', 'true');
+			$('input[name=outro_diagnostico_sim]').removeAttr('disabled');
+			return;
+		}
+		$(this).removeAttr('checked');
+		$('input[name=outro_diagnostico_sim]').val('');
+		$('input[name=outro_diagnostico_sim]').attr('disabled', 'true');
+		return;
+	});
+	$('#comorbidades_outros').click(function(){
+		if($(this).is(':checked')){
+			$('').attr('checked', 'true');
+			$('input[name=comorbidadesOutros]').removeAttr('disabled');
+			return;
+		}
+		$(this).removeAttr('checked');
+		$('input[name=comorbidadesOutros]').val('');
+		$('input[name=comorbidadesOutros]').attr('disabled', 'true');
+		return;
+	});
+
+	var i;
+	$('#nenhuma_comorbidade').click(function(){
+		if($(this).is(':checked')){
+			$('').attr('checked', 'true');
+			for (i = 0 ; i <= 9 ; i++)
+			{
+				$('#comorbidades_'+i).val('');
+				$('#comorbidades_'+i).attr('disabled','true');
+			}
+			return;
+		}
+		$(this).removeAttr('checked');
+		for (i = 0 ; i <= 9 ; i++)
+			$('#comorbidades_'+i).removeAttr('disabled');
+		return;
+	});
 
 	$('div.secondary').css('display', 'none');
-
 
 	$('#form_consulta').validate({
 		rules: {
