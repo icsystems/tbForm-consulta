@@ -138,42 +138,64 @@
 					<option value="ignorado"   type="radio" />Ignorado   </option>
 				</select>
 			</div>
-			<div id='divDiagnosticoDiferenteTB' class='secondary'>
+			<div id='divTratamentoPrescritoTB' class='primary required'>
+				<label for='tratamentoPrescritoTB'>Tratamento prescrito para TB:</label>
+				<select name='tratamentoPrescritoTB' id='tratamentoPrescritoTB' class='selectOne'>
+					<option value='ignorado' > Ignorado </option>
+					<option value='sim'> Sim  </option>
+					<option value='nao'> N&atilde;o  </option>
+				</select>
+			</div>
+			<div id='divDataInicio' class='secondary'>
+				<label for='data_inicio'> Data do início:</label>
+				<input  name="data_inicio" id="data_inicio" type="text" />
+			</div>
+			<div id='divTratamentoPrescritoTBFarmaco' class='secondary'>
 				<fieldset>
-				<legend> Em caso de outro Diagnóstico diferente de TB </legend>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="asma"      type="checkbox" /> Asma
+					<legend>Farmacos Utilizados</legend>
+					<label for='tratamentoPrescritoTBFarmacos_0' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_0' name="tratamentoPrescritoTBFarmacos" value="rifampicina"    type="checkbox" /> Rifampicina
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="rinossinusite"      type="checkbox" /> Rinossinusite
+					<label for='tratamentoPrescritoTBFarmacos_1' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_1' name="tratamentoPrescritoTBFarmacos" value="isoniazida"     type="checkbox" /> Isoniazida
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="dpco_infeccao"     type="checkbox"> DPOC + Infecção brônquica inespecífica
+					<label for='tratamentoPrescritoTBFarmacos_2' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_2' name="tratamentoPrescritoTBFarmacos" value="pirazinamida"   type="checkbox" /> Pirazinamida
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="pneumo_bacteria"   type="checkbox" /> Pneumonia
+					<label for='tratamentoPrescritoTBFarmacos_3' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_3' name="tratamentoPrescritoTBFarmacos" value="etambutol"      type="checkbox" /> Etambutol
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="sequela_infeccao"  type="checkbox"> Infeção brônquica inespecífica
+					<label for='tratamentoPrescritoTBFarmacos_4' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_4' name="tratamentoPrescritoTBFarmacos" value="etionamida"     type="checkbox" /> Etionamida
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="micose_pulmonar"   type="checkbox" /> Micose pulmonar
+					<label for='tratamentoPrescritoTBFarmacos_5' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_5'name="tratamentoPrescritoTBFarmacos" value="estreptomicina" type="checkbox" /> Estreptomicina
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="pneumoconiose"     type="checkbox"> Pneumoconiose
+					<label for='tratamentoPrescritoTBFarmacos_6' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_6' name="tratamentoPrescritoTBFarmacos" value="ofloxacina"     type="checkbox" /> Ofloxacina
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="ca_de_pulmao"      type="checkbox" /> CA de pulmão
+					<label for='tratamentoPrescritoTBFarmacos_7' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_7' name="tratamentoPrescritoTBFarmacos" value="moxifloxacina"     type="checkbox" /> Moxifloxacina
 					</label>
-					<label for='diagnosticoDiferenteTB' class='labelRadio'>
-						<input name="diagnosticoDiferenteTB" value="falencia_cardiaca" type="checkbox" /> Falência cardíaca
+					<label for='tratamentoPrescritoTBFarmacos_8' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_8' name="tratamentoPrescritoTBFarmacos" value="clofazimina"      type="checkbox" /> Clofazimina
 					</label>
-						<label for='diagnosticoDiferenteTB' class='labelRadio'>
-					<input name="diagnosticoDiferenteTB"  id='diagnosticoDifOutros' value="outros" type="checkbox" /> Outro:
+					<label for='tratamentoPrescritoTBFarmacos_9' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_9' name="tratamentoPrescritoTBFarmacos" value="levofloxacina"      type="checkbox" /> Levofloxacina
 					</label>
-					<lable>
-						<input name="outro_diagnostico_sim" maxlength="100" type="text" disabled />
+					<label for='tratamentoPrescritoTBFarmacos_10' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_10' name="tratamentoPrescritoTBFarmacos" value="canamicina"      type="checkbox" /> Canamicina
 					</label>
+					<label for='tratamentoPrescritoTBFarmacos_11' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_11' name="tratamentoPrescritoTBFarmacos" value="amicacina"      type="checkbox" /> Amicacina
+					</label>
+					<label for='tratamentoPrescritoTBFarmacos_12' class='labelCheckbox'>
+					<input id='tratamentoPrescritoTBFarmacos_12' name="tratamentoPrescritoTBFarmacos" value="terizidona"      type="checkbox" /> Terizidona
+					</label>
+					<label for='tratamentoPrescritoTBFarmacos_13' class='labelCheckbox'>
+						<input id='tratamentoPrescritoTBFarmacos_13' name="tratamentoPrescritoTBFarmacos" value="outros" type="checkbox" /> Outros:
+					</label>
+					<input name="farmacosOutros" type="text" size='50' disabled/>
 				</fieldset>
 			</div>
 			<div id='divObservacoes' class='primary'>

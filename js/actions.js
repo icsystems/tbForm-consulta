@@ -119,7 +119,7 @@ $(document).ready(function(){
 				if($(baixa[div]).css('display') != 'none')
 					$(baixa[div]).toggle();
 	});
-
+/*
         //O diagnostico eh tb???
         $('#diagnostico').change(function(){
                 var dep = new Array();
@@ -156,7 +156,70 @@ $(document).ready(function(){
                         }
                 }
         });
+*/
+	$('#data_inicio').datepicker({
+		dateFormat: 'dd/mm/yy',
+		monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		maxDate: '+0d',
+		changeMonth: true,
+		changeYear: true,
+		maxDate : '+0y',
+		minDate : '-130y',
+		yearRange : '-130:+130',
+		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
+	});
 
+	//Foi prescrito TB?
+	$('#tratamentoPrescritoTB').change(function(){
+		var dep = new Array();
+		dep[0] = '#divDataInicio';
+		dep[1] = '#divTratamentoPrescritoTBFarmaco';
+		// Se sim, disponibilizar colunas listadas a cima
+		if($(this).val()=='sim'){
+			for(div in dep){
+				var elems = $('*', dep[div]);
+				$(elems).each(function(){
+					var element = $(this);
+					if (   element[0].nodeName != 'FIELDSET'
+					    && element[0].nodeName != 'SMALL'
+					    && element[0].nodeName != 'OPTION')
+						$(this).addClass('required');
+				});
+				if($(dep[div]).css('display') != 'block')
+					$(dep[div]).toggle(function() {
+						$(this).css('background-color', hlcolor);
+						$(this).animate({backgroundColor : "white"}, 4000);
+					});
+			}
+		}
+		// Se nao, ocultar colunas listadas a cima
+		if($(this).val()=='nao'){
+			for(div in dep){
+				var elems = $('*', dep[div]);
+				$(elems).each(function(){
+					var element = $(this);
+					if (   element[0].nodeName != 'FIELDSET'
+					    && element[0].nodeName != 'SMALL'
+					    && element[0].nodeName != 'OPTION')
+						$(this).removeClass('required');
+				});
+				if($(dep[div]).css('display') != 'none')
+					$(dep[div]).toggle();
+			}
+		}
+	});
+	$('#tratamentoPrescritoTBFarmacos_13').click(function(){
+		if($(this).is(':checked')){
+			$('').attr('checked', 'true');
+			fieldOutros = $('')
+			$('input[name=farmacosOutros]').removeAttr('disabled');
+			return;
+		}
+		$(this).removeAttr('checked');
+		$('input[name=farmacosOutros]').val('');
+		$('input[name=farmacosOutros]').attr('disabled', 'true');
+		return;
+	});
 	$('#diagnosticoDifOutros').click(function(){
 		if($(this).is(':checked')){
 			$('').attr('checked', 'true');
