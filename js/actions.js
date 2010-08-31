@@ -56,15 +56,14 @@ var resistent = new Array();
 //Document is ready, let's play
 $(document).ready(function(){
 
-	//Controle de caracteres estranhos
-
-	$('#escoreRedeNeural').keypress(function(e){
-		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
+	$('#form_consulta').keypress(function(e){
+		if(e.which == 13)
 			return false;
 	});
 
-	$('#probabilidadeTBClinicoRadiologica').keypress(function(e){
-		if((e.which > 31 && e.which < 48)||(e.which > 57)||(e.which == 13))
+	//Controle de caracteres estranhos
+	$('.number').keypress(function(e){
+		if((e.which > 31 && e.which < 48)||(e.which > 57))
 			return false;
 	});
 
@@ -73,10 +72,10 @@ $(document).ready(function(){
 	var cYear = d.getFullYear();
 
 
-        //Checking aids exam date
-        years = new Array();
-        for (i=cYear-100; i <=cYear; i++)
-                years.push(i.toString());
+	//Checking aids exam date
+	years = new Array();
+	for (i=cYear-100; i <=cYear; i++)
+			years.push(i.toString());
 
 
 	$('#data_rx').datepicker({
@@ -271,7 +270,8 @@ $(document).ready(function(){
 				required: true
 			},
 			escoreRedeNeural:{
-				required: true
+				required: true,
+				max : 100
 			},
 			probabilidadeTBAtivaAposEstudo:{
 				required: true,
@@ -287,11 +287,11 @@ $(document).ready(function(){
 				number: true,
 				max: 100
 			},
-            data_ultimo_tratamento:{
+			data_ultimo_tratamento:{
 				min: 1910,
-                minlength: 4,
-                maxlength: 4
-            },
+				minlength: 4,
+				maxlength: 4
+			},
 			diagnostico: {
 				required: true
 			}
