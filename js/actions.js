@@ -81,6 +81,7 @@ $(document).ready(function(){
 	$('#data_rx').datepicker({
 		dateFormat: 'dd/mm/yy',
 		monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Aug','Set','Out','Nov','Dez'],
 		maxDate: '+0d',
 		changeMonth: true,
 		changeYear: true,
@@ -118,47 +119,10 @@ $(document).ready(function(){
 				if($(baixa[div]).css('display') != 'none')
 					$(baixa[div]).toggle();
 	});
-/*
-        //O diagnostico eh tb???
-        $('#diagnostico').change(function(){
-                var dep = new Array();
-                dep[0] = '#divDiagnosticoDiferenteTB';
-                // Se naun, disponibilizar colunas listadas a cima
-                if($(this).val()=='nao_tb'){
-                        for(div in dep){
-                                var elems = $('*', dep[div]);
-                                $(elems).each(function(){
-                                        var element = $(this);
-                                        if (   element[0].nodeName != 'FIELDSET'
-                                            && element[0].nodeName != 'SMALL'
-                                            && element[0].nodeName != 'OPTION')
-                                                $(this).addClass('required');
-                                });
-                                if($(dep[div]).css('display') != 'block')
-                                        $(dep[div]).toggle(function() {
-                                                $(this).css('background-color', hlcolor);
-                                                $(this).animate({backgroundColor : "white"}, 4000);
-                                        });
-                        }
-                } else {
-                        for(div in dep){
-                                var elems = $('*', dep[div]);
-                                $(elems).each(function(){
-                                        var element = $(this);
-                                        if (   element[0].nodeName != 'FIELDSET'
-                                            && element[0].nodeName != 'SMALL'
-                                            && element[0].nodeName != 'OPTION')
-                                                $(this).removeClass('required');
-                                });
-                                if($(dep[div]).css('display') != 'none')
-                                        $(dep[div]).toggle();
-                        }
-                }
-        });
-*/
 	$('#data_inicio').datepicker({
 		dateFormat: 'dd/mm/yy',
 		monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Aug','Set','Out','Nov','Dez'],
 		maxDate: '+0d',
 		changeMonth: true,
 		changeYear: true,
@@ -245,18 +209,20 @@ $(document).ready(function(){
 	var i;
 	$('#nenhuma_comorbidade').click(function(){
 		if($(this).is(':checked')){
-			$('').attr('checked', 'true');
 			for (i = 0 ; i <= 9 ; i++)
 			{
 				$('#comorbidades_'+i).val('');
 				$('#comorbidades_'+i).attr('disabled','true');
 			}
+			$('#comorbidades_outros').attr('disabled','true');
+			return;
+		}else{
+			$(this).removeAttr('checked');
+			for (i = 0 ; i <= 9 ; i++)
+				$('#comorbidades_'+i).removeAttr('disabled');
+			$('#comorbidades_outros').removeAttr('disabled');
 			return;
 		}
-		$(this).removeAttr('checked');
-		for (i = 0 ; i <= 9 ; i++)
-			$('#comorbidades_'+i).removeAttr('disabled');
-		return;
 	});
 
 	$('div.secondary').css('display', 'none');
