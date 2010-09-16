@@ -56,6 +56,41 @@ var resistent = new Array();
 //Document is ready, let's play
 $(document).ready(function(){
 
+	$.fn.showFields = function(argumento){
+		var dep = argumento;
+		for(div in dep){
+			var elems = $('*', dep[div]);
+			$(elems).each(function(){
+				var element = $(this);
+				if (   element[0].nodeName != 'FIELDSET'
+					&& element[0].nodeName != 'SMALL'
+					&& element[0].nodeName != 'OPTION')
+				$(this).addClass('required');
+				});
+			if($(dep[div]).css('display') != 'block')
+				$(dep[div]).toggle(function() {
+						$(this).css('background-color', hlcolor);
+						$(this).animate({backgroundColor : "white"}, 4000);
+						});
+		}
+	}
+
+	$.fn.hideFields = function(argumento){
+		var dep = argumento;
+		for(div in dep){
+			var elems = $('*', dep[div]);
+			$(elems).each(function(){
+				var element = $(this);
+				if (   element[0].nodeName != 'FIELDSET'
+					&& element[0].nodeName != 'SMALL'
+					&& element[0].nodeName != 'OPTION')
+					$(this).removeClass('required');
+			});
+			if($(dep[div]).css('display') != 'none')
+				$(dep[div]).toggle();
+		}
+	}
+
 	$('#form_consulta').keypress(function(e){
 		if(e.which == 13)
 			return false;
@@ -100,20 +135,20 @@ $(document).ready(function(){
 		if ($(this).val() == 'padraoTipico')
 			$('#probabilidadeTBAtivaAposEstudoRX').val('Alta');
 		else if ($(this).val() == 'padraoCompativel')
-                        $('#probabilidadeTBAtivaAposEstudoRX').val('Média');
+			$('#probabilidadeTBAtivaAposEstudoRX').val('Média');
 		else if ($(this).val() == 'padraoAtipico')
-		{	
+		{
 			$('#probabilidadeTBAtivaAposEstudoRX').val('Baixa');
-                        for(div in baixa){
-                                if($(baixa[div]).css('display') != 'block')
-                                        $(baixa[div]).toggle(function() {
-                                                $(this).css('background-color', hlcolor);
-                                                $(this).animate({backgroundColor : "white"}, 4000);
-                                        });
-                        }
+				for(div in baixa){
+					if($(baixa[div]).css('display') != 'block')
+						$(baixa[div]).toggle(function() {
+								$(this).css('background-color', hlcolor);
+								$(this).animate({backgroundColor : "white"}, 4000);
+						});
+				}
 		}else
 			$('#probabilidadeTBAtivaAposEstudoRX').val('');
-		
+
 		if($(this).val() != 'padraoAtipico')
 			for(div in baixa)
 				if($(baixa[div]).css('display') != 'none')
@@ -139,36 +174,11 @@ $(document).ready(function(){
 		dep[1] = '#divTratamentoPrescritoTBFarmaco';
 		// Se sim, disponibilizar colunas listadas a cima
 		if($(this).val()=='sim'){
-			for(div in dep){
-				var elems = $('*', dep[div]);
-				$(elems).each(function(){
-					var element = $(this);
-					if (   element[0].nodeName != 'FIELDSET'
-					    && element[0].nodeName != 'SMALL'
-					    && element[0].nodeName != 'OPTION')
-						$(this).addClass('required');
-				});
-				if($(dep[div]).css('display') != 'block')
-					$(dep[div]).toggle(function() {
-						$(this).css('background-color', hlcolor);
-						$(this).animate({backgroundColor : "white"}, 4000);
-					});
-			}
+			$().showFields(dep);
 		}
 		// Se nao, ocultar colunas listadas a cima
 		if($(this).val()=='nao'){
-			for(div in dep){
-				var elems = $('*', dep[div]);
-				$(elems).each(function(){
-					var element = $(this);
-					if (   element[0].nodeName != 'FIELDSET'
-					    && element[0].nodeName != 'SMALL'
-					    && element[0].nodeName != 'OPTION')
-						$(this).removeClass('required');
-				});
-				if($(dep[div]).css('display') != 'none')
-					$(dep[div]).toggle();
-			}
+			$().hideFields(dep);
 		}
 	});
 	$('#tratamentoPrescritoTBFarmacos_13').click(function(){
@@ -248,33 +258,32 @@ $(document).ready(function(){
 		}
 	});
 
-        //Load previous exams
-        var sUrl="./cgi-bin/retrieveExames.py";
-        var edits = new Object();
+		//Load previous exams
+		var sUrl="./cgi-bin/retrieveExames.py";
+		var edits = new Object();
 
-        var returned = $.ajax({
-                url:sUrl,
-                dataType:'html',
-                complete: function(xhr, textStatus){
-                        var response = xhr.responseText;
-                        if(textStatus = 'success'){
-                                $('#divExames').html(response);
-                                var sizeH =  0.9*(getScrollXY()[1] - 176) + 'px';
-                                $('#divExames').height(sizeH);
-                                //$('#divExames').css('overflow', 'all');
-                                $('#divExames').jScrollPane({showArrows:true});
-                                menuYloc = 176;
-                                $(window).scroll(function () {
-                                        var offset = menuYloc+$(document).scrollTop()+"px";
-                                        $('div.jScrollPaneContainer').animate({top:offset},{duration:500,queue:false});
-                                });
-                                $('tr:odd','#divExames table').css(
-                                        "background-color", "#E0EEEE"
-                                );
-                        }else{
-                                alert("Nao foi possível carregar exames anteriores");
-                        }
-                }
-        });
-        var menuYloc = null;
+		var returned = $.ajax({
+			url:sUrl,
+			dataType:'html',
+			complete: function(xhr, textStatus){
+				var response = xhr.responseText;
+				if(textStatus = 'success'){
+					$('#divExames').html(response);
+					var sizeH =  0.9*(getScrollXY()[1] - 176) + 'px';
+					$('#divExames').height(sizeH);
+					//$('#divExames').css('overflow', 'all');
+					$('#divExames').jScrollPane({showArrows:true});
+					menuYloc = 176;
+					$(window).scroll(function () {
+						var offset = menuYloc+$(document).scrollTop()+"px";
+						$('div.jScrollPaneContainer').animate({top:offset},{duration:500,queue:false});
+					});
+					$('tr:odd','#divExames table').css(
+						"background-color", "#E0EEEE"
+					);
+				}else
+					alert("Nao foi possível carregar exames anteriores");
+			}
+		});
+		var menuYloc = null;
 });
