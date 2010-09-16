@@ -172,56 +172,40 @@ $(document).ready(function(){
 		}
 	});
 	$('#tratamentoPrescritoTBFarmacos_13').click(function(){
-		if($(this).is(':checked')){
-			$('').attr('checked', 'true');
-			fieldOutros = $('')
+		if($(this).is(':checked'))
 			$('input[name=farmacosOutros]').removeAttr('disabled');
-			return;
+		else{
+			$('input[name=farmacosOutros]').val('');
+			$('input[name=farmacosOutros]').attr('disabled', 'true');
 		}
-		$(this).removeAttr('checked');
-		$('input[name=farmacosOutros]').val('');
-		$('input[name=farmacosOutros]').attr('disabled', 'true');
-		return;
-	});
-	$('#diagnosticoDifOutros').click(function(){
-		if($(this).is(':checked')){
-			$('').attr('checked', 'true');
-			$('input[name=outro_diagnostico_sim]').removeAttr('disabled');
-			return;
-		}
-		$(this).removeAttr('checked');
-		$('input[name=outro_diagnostico_sim]').val('');
-		$('input[name=outro_diagnostico_sim]').attr('disabled', 'true');
-		return;
-	});
-	$('#comorbidades_outros').click(function(){
-		if($(this).is(':checked')){
-			$('').attr('checked', 'true');
-			$('input[name=comorbidadesOutros]').removeAttr('disabled');
-			return;
-		}
-		$(this).removeAttr('checked');
-		$('input[name=comorbidadesOutros]').val('');
-		$('input[name=comorbidadesOutros]').attr('disabled', 'true');
-		return;
 	});
 
-	var i;
+	$('#comorbidades_outros').click(function(){
+		if($(this).is(':checked'))
+			$('input[name=comorbidadesOutros]').removeAttr('disabled');
+		else{
+			$('input[name=comorbidadesOutros]').val('');
+			$('input[name=comorbidadesOutros]').attr('disabled', 'true');
+		}
+	});
+
 	$('#nenhuma_comorbidade').click(function(){
 		if($(this).is(':checked')){
-			for (i = 0 ; i <= 9 ; i++)
-			{
-				$('#comorbidades_'+i).val('');
-				$('#comorbidades_'+i).attr('disabled','true');
-			}
-			$('#comorbidades_outros').attr('disabled','true');
-			return;
+			//Uncheck and disabled the checkboxes
+			$('input[name=comorbidades]').each(function(){
+				if ($(this).val() != 'nao')
+				{
+					$(this).removeAttr('checked');
+					$(this).attr('disabled',true);
+				}
+			});
+			//Clear the text field
+			$('#comorbidadesOutros').attr('disabled',true);
+			$('#comorbidadesOutros').val('');
 		}else{
-			$(this).removeAttr('checked');
-			for (i = 0 ; i <= 9 ; i++)
-				$('#comorbidades_'+i).removeAttr('disabled');
-			$('#comorbidades_outros').removeAttr('disabled');
-			return;
+			$('input[name=comorbidades]').each(function(){
+				$(this).removeAttr('disabled');
+			});
 		}
 	});
 
