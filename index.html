@@ -17,11 +17,6 @@
 	<script type="text/javascript" src="js/actions.js"></script>
 </head>
 <body>
-<div id='menu'>
-	<ul>
-		<li class='help'><a href='#'>Ajuda</a></li>
-	</ul>
-</div>
 <div id='mainFrame'>
 <div id='content'>
 	<div id='maincontent'>
@@ -30,7 +25,12 @@
 			<legend>Avalia&ccedil;&atilde;o Cl&iacute;nica</legend>
 			<div id='divEscoreRedeNeural' class='primary required'>
 				<label for='escoreRedeNeural'> Escore da Rede Neural: </label>
-				<input name='escoreRedeNeural' id='escoreRedeNeural' type='text' class='number' size='4' maxlength='3'/> %
+				<select name='escoreRedeNeural' id='escoreRedeNeural' class='selectOne'>
+					<option value=''        > ------    </option>
+					<option value='baixo'	> Baixo        </option>
+					<option value='medio'   > Médio  	 </option>
+					<option value='alto'  	> Alto </option>
+				</select>
 			</div>
 		</fieldset>
 		<fieldset>
@@ -138,6 +138,21 @@
 					<option value="ignorado"   type="radio" />Ignorado   </option>
 				</select>
 			</div>
+			<div id='divRealizadoTesteSensibilidade' class='primary required'>
+				<label for='realizadoTesteSensibilidade'> Foi realizado teste de sensibilidade? </label>
+				<select name='realizadoTesteSensibilidade' id='realizadoTesteSensibilidade' class='selectOne required'>
+					<option value=''	> ---- 	</option>
+					<option value='sim'	> Sim 	</option>
+					<option value='nao'	> Não	</option>
+				</select>
+			</div>
+			<div id='divRespostaTesteSensibilidade' class='secondary'>
+				<label for='respostaTesteSensibilidade'></label>
+				<select name='respostaTesteSensibilidade' id='respostaTesteSensibilidade' style="width:220px;">
+					<option value='pacienteTrouxeResultadoDeFora'	> Paciente trouxe resultado de fora 	</option>
+					<option value='realizadoNoLocalDeAtendimento'	> Realizado no local de atendimento 	</option>
+				</select>
+			</div><br />
 			<div id='divTratamentoPrescritoTB' class='primary required'>
 				<label for='tratamentoPrescritoTB'>Tratamento prescrito para TB:</label>
 				<select name='tratamentoPrescritoTB' id='tratamentoPrescritoTB' class='selectOne'>

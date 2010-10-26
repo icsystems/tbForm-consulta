@@ -219,6 +219,15 @@ $(document).ready(function(){
 		}
 	});
 
+	$('#realizadoTesteSensibilidade').change(function(){
+		var dep = new Array();
+		dep[0] = '#divRespostaTesteSensibilidade';
+		if($(this).val()=='sim')
+			$().showFields(dep);
+		else if ($(this).val()=='nao')
+			$().hideFields(dep);
+	});
+
 	$('div.secondary').css('display', 'none');
 
 	$('#form_consulta').validate({
