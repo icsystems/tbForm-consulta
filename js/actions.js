@@ -7,6 +7,45 @@
  **/
 
 //global functions
+(function($){
+	$.fn.writePortugueseDate = function(){
+		var element = $(this[0]);
+		var mydate=new Date()
+		var year=mydate.getYear()
+		if (year<2000)
+		year += (year < 1900) ? 1900 : 0
+		var day=mydate.getDay()
+		var month=mydate.getMonth()
+		var daym=mydate.getDate()
+		if (daym<10)
+		daym="0"+daym
+		var dayarray=new Array(
+			"Domingo",
+			"Segunda-feira",
+			"Terça-feira",
+			"Quarta-feira",
+			"Quinta-feira",
+			"Sexta-feira",
+			"Sábado"
+		);
+		var montharray=new Array(
+			"de Janeiro de ",
+			"de Fevereiro de ",
+			"de Março de ",
+			"de Abril de ",
+			"de Maio de ",
+			"de Junho de",
+			"de Julho de ",
+			"de Agosto de ",
+			"de Setembro de ",
+			"de Outubro de ",
+			"de Novembro de ",
+			"de Dezembro de "
+		);
+		var msg = dayarray[day]+", "+daym+" "+montharray[month]+year;
+		element.val(msg);
+	};
+})(jQuery);
 
 function getScrollXY() {
 	var myWidth = 0, myHeight = 0;
@@ -53,8 +92,11 @@ var resistent = new Array();
 })(jQuery);
 
 
+
 //Document is ready, let's play
 $(document).ready(function(){
+
+	$('#dataConsulta').writePortugueseDate();
 
 	$.fn.showFields = function(argumento){
 		var dep = argumento;
@@ -191,11 +233,13 @@ $(document).ready(function(){
 	});
 
 	$('#comorbidades_outros').click(function(){
-		if($(this).is(':checked'))
+		if($(this).is(':checked')){
 			$('input[name=comorbidadesOutros]').removeAttr('disabled');
-		else{
+			$('input[name=comorbidadesOutros]').addClass('required');
+		}else{
 			$('input[name=comorbidadesOutros]').val('');
 			$('input[name=comorbidadesOutros]').attr('disabled', 'true');
+			$('input[name=comorbidadesOutros]').removeClass('required');
 		}
 	});
 
@@ -240,7 +284,6 @@ $(document).ready(function(){
 			},
 			escoreRedeNeural:{
 				required: true,
-				max : 100
 			},
 			probabilidadeTBAtivaAposEstudo:{
 				required: true,
