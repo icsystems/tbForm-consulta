@@ -100,7 +100,10 @@ $(document).ready(function(){
 	//Diagnóstico - Consulta e FollowUp
 	var urlString = $(location).attr('href');
 	var numPaciente = urlString[urlString.length - 2];
-	var numForm = parseInt(urlString[urlString.length - 4]) - 1;
+	if (urlString.search("edit") != -1)
+		var numForm = parseInt(urlString[urlString.length - 4]);
+	else
+		var numForm = parseInt(urlString[urlString.length - 4]) - 1;
 	$.ajax({
 		type: 'POST',
 		url:'../../../patientLastRegister/' + numForm + '/' + numPaciente + '/',
