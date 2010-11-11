@@ -99,14 +99,19 @@ $(document).ready(function(){
 	//Relation between forms
 	//Diagnóstico - Consulta e FollowUp
 	var urlString = $(location).attr('href');
+	var urlArray = urlString.split('/');
 	var numPaciente = urlString[urlString.length - 2];
-	if (urlString.search("edit") != -1)
+	var numArgs = 3;
+	if (urlString.search("edit") != -1){
 		var numForm = parseInt(urlString[urlString.length - 4]);
-	else
-		var numForm = parseInt(urlString[urlString.length - 4]) - 1;
+		numArgs++;
+	} else var numForm = parseInt(urlString[urlString.length - 4]) - 1;
+	var urlbase = '';
+	for (var j = 0; j < urlArray.length - numArgs-1; j++)
+		urlbase += urlArray[j] + '/';
 	$.ajax({
 		type: 'POST',
-		url:'../../../patientLastRegister/' + numForm + '/' + numPaciente + '/',
+		url: urlbase + '/patientLastRegister/' + numForm + '/' + numPaciente + '/',
 		dataType: "html",
 		success: function(text){
 			if (window.DOMParser)
@@ -118,39 +123,79 @@ $(document).ready(function(){
 				xml.async="false";
 				xml.loadXML(text);
 			}
-			//console.log(text);
-			//console.log(xml);
-			if (urlString.search("edit") != -1){
-			//Edit
+			if (xml.getElementsByTagName('error')[0] == undefined){
 				var elements = xml.getElementsByTagName('documento')[0].childNodes;
-				$(elements).each(function(){
+				if (urlString.search("edit") != -1){
+				//Edit
+					var elements = xml.getElementsByTagName('documento')[0].childNodes;
+					$(elements).each(function(){
+							var el = $(this).get(0);
+							if($(el)[0].nodeType == xml.ELEMENT_NODE){
+							var tagname = $(el)[0].tagName;
+							idDiv = $('#'+tagname).parent().attr('id');
+							console.log(tagname + ' : ' + $(el).text());
+							var hlcolor = '#FFF8C6';
+							//Checkbox
+							if (tagname == 'comorbidades')
+							{
+								$('input[name=comorbidades]').each(function(){
+									if ($(el).text().search($(this).val()) != -1)
+										$(this).attr('checked',true);
+										$(this).change();
+									});
+								if ($(el).text().search('nao') != -1)
+								{
+								$('input[name=comorbidades]').each(function(){
+									if ($(this).val() != 'nao')
+									$(this).attr('disabled',true);
+									});
+								}
+							}
+							if (tagname == 'comorbidadesOutros')
+							{
+								$('input[name=comorbidadesOutros]').removeAttr('disabled');
+								$('input[name=comorbidadesOutros]').val($(this).text());
+							}
+							if (tagname == 'tratamentoPrescritoTBFarmacos')
+							{
+								$('input[name=tratamentoPrescritoTBFarmacos]').each(function(){
+										if ($(el).text().search($(this).val()) != -1)
+										$(this).attr('checked',true);
+										});
+							}
+							if (tagname == 'farmacosOutros')
+							{
+								$(this).removeAttr('disabled');
+								$(this).val($(el).text());
+								$('#tratamentoPrescritoTBFarmacos_13').attr('checked',true);
+							}
+							$('#'+tagname).val($(el).text());
+							$('#'+tagname).change();
+						}
+					});
+				}else{
+				//Relation
+					var elements = xml.getElementsByTagName('documento')[0].childNodes;
+					$(elements).each(function(){
 						var el = $(this).get(0);
 						if($(el)[0].nodeType == xml.ELEMENT_NODE){
 						var tagname = $(el)[0].tagName;
 						idDiv = $('#'+tagname).parent().attr('id');
-						console.log(tagname + ' : ' + $(el).text());
+						//console.log(tagname + ' : ' + $(el).text());
 						var hlcolor = '#FFF8C6';
-						//Checkbox
-						if (tagname == 'comorbidades')
+						if (tagname == 'diagnostico')
+						$('#' + tagname).val($(el).text());
+						if (tagname == 'tratamentoPrescritoTB')
 						{
-							$('input[name=comorbidades]').each(function(){
-								if ($(el).text().search($(this).val()) != -1)
-									$(this).attr('checked',true);
-									$(this).change();
-								});
-							if ($(el).text().search('nao') != -1)
-							{
-							$('input[name=comorbidades]').each(function(){
-								if ($(this).val() != 'nao')
-								$(this).attr('disabled',true);
-								});
-							}
+							if ($(el).text() == '')
+								$('#' + tagname).val('ignorado');
+							else
+								$('#' + tagname).val($(el).text());
 						}
-						if (tagname == 'comorbidadesOutros')
-						{
-							$('input[name=comorbidadesOutros]').removeAttr('disabled');
-							$('input[name=comorbidadesOutros]').val($(this).text());
-						}
+						if (tagname == 'observacoes')
+							$('#' + tagname).val($(el).text());
+						if (tagname == 'data_inicio')
+							$('#' + tagname).val($(el).text());
 						if (tagname == 'tratamentoPrescritoTBFarmacos')
 						{
 							$('input[name=tratamentoPrescritoTBFarmacos]').each(function(){
@@ -160,53 +205,14 @@ $(document).ready(function(){
 						}
 						if (tagname == 'farmacosOutros')
 						{
-							$(this).removeAttr('disabled');
-							$(this).val($(el).text());
 							$('#tratamentoPrescritoTBFarmacos_13').attr('checked',true);
-						}
-						$('#'+tagname).val($(el).text());
-						$('#'+tagname).change();
-					}
-				});
-			}else{
-			//Relation
-				var elements = xml.getElementsByTagName('documento')[0].childNodes;
-				$(elements).each(function(){
-					var el = $(this).get(0);
-					if($(el)[0].nodeType == xml.ELEMENT_NODE){
-					var tagname = $(el)[0].tagName;
-					idDiv = $('#'+tagname).parent().attr('id');
-					//console.log(tagname + ' : ' + $(el).text());
-					var hlcolor = '#FFF8C6';
-					if (tagname == 'diagnostico')
-					$('#' + tagname).val($(el).text());
-					if (tagname == 'tratamentoPrescritoTB')
-					{
-						if ($(el).text() == '')
-							$('#' + tagname).val('ignorado');
-						else
+							$('#'+tagname).removeAttr('disabled');
 							$('#' + tagname).val($(el).text());
-					}
-					if (tagname == 'observacoes')
-						$('#' + tagname).val($(el).text());
-					if (tagname == 'data_inicio')
-						$('#' + tagname).val($(el).text());
-					if (tagname == 'tratamentoPrescritoTBFarmacos')
-					{
-						$('input[name=tratamentoPrescritoTBFarmacos]').each(function(){
-								if ($(el).text().search($(this).val()) != -1)
-								$(this).attr('checked',true);
-								});
-					}
-					if (tagname == 'farmacosOutros')
-					{
-						$('#tratamentoPrescritoTBFarmacos_13').attr('checked',true);
-						$('#'+tagname).removeAttr('disabled');
-						$('#' + tagname).val($(el).text());
-					}
-					$('#' + tagname).change();
-					}
-				});
+						}
+						$('#' + tagname).change();
+						}
+					});
+				}
 			}
 		}
 	});
