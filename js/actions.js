@@ -99,19 +99,19 @@ $(document).ready(function(){
 	//Relation between forms
 	//Diagnóstico - Consulta e FollowUp
 	var urlString = $(location).attr('href');
+	var urlbase = 'https://gruyere.lps.ufrj.br/~fferreira/sapem/';
 	var urlArray = urlString.split('/');
-	var numPaciente = urlString[urlString.length - 2];
-	var numArgs = 3;
 	if (urlString.search("edit") != -1){
-		var numForm = parseInt(urlString[urlString.length - 4]);
-		numArgs++;
-	} else var numForm = parseInt(urlString[urlString.length - 4]) - 1;
-	var urlbase = '';
-	for (var j = 0; j < urlArray.length - numArgs-1; j++)
-		urlbase += urlArray[j] + '/';
+		var fichaId = urlArray[urlArray.length-2];
+		var url = urlbase + 'ficha/' + fichaId + '/';
+	}else{
+		var numPaciente = urlArray[urlArray.length-2];
+		var numForm = urlArray[urlArray.length-3] - 1;
+		var url = urlbase + 'patientLastRegister/' + numForm + '/' + numPaciente + '/';
+	}
 	$.ajax({
 		type: 'POST',
-		url: urlbase + '/patientLastRegister/' + numForm + '/' + numPaciente + '/',
+		url: url,
 		dataType: "html",
 		success: function(text){
 			if (window.DOMParser)
@@ -160,13 +160,13 @@ $(document).ready(function(){
 							{
 								$('input[name=tratamentoPrescritoTBFarmacos]').each(function(){
 										if ($(el).text().search($(this).val()) != -1)
-										$(this).attr('checked',true);
+											$(this).attr('checked',true);
 										});
 							}
 							if (tagname == 'farmacosOutros')
 							{
-								$(this).removeAttr('disabled');
-								$(this).val($(el).text());
+								$('#'+tagname).removeAttr('disabled');
+								$('#'+tagname).val($(el).text());
 								$('#tratamentoPrescritoTBFarmacos_13').attr('checked',true);
 							}
 							$('#'+tagname).val($(el).text());
@@ -430,32 +430,4 @@ $(document).ready(function(){
 		}
 	});
 
-		//Load previous exams
-		var sUrl="./cgi-bin/retrieveExames.py";
-		var edits = new Object();
-
-		var returned = $.ajax({
-			url:sUrl,
-			dataType:'html',
-			complete: function(xhr, textStatus){
-				var response = xhr.responseText;
-				if(textStatus = 'success'){
-					$('#divExames').html(response);
-					var sizeH =  0.9*(getScrollXY()[1] - 176) + 'px';
-					$('#divExames').height(sizeH);
-					//$('#divExames').css('overflow', 'all');
-					$('#divExames').jScrollPane({showArrows:true});
-					menuYloc = 176;
-					$(window).scroll(function () {
-						var offset = menuYloc+$(document).scrollTop()+"px";
-						$('div.jScrollPaneContainer').animate({top:offset},{duration:500,queue:false});
-					});
-					$('tr:odd','#divExames table').css(
-						"background-color", "#E0EEEE"
-					);
-				}else
-					alert("Nao foi possível carregar exames anteriores");
-			}
-		});
-		var menuYloc = null;
 });
