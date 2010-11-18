@@ -133,7 +133,7 @@ $(document).ready(function(){
 							if($(el)[0].nodeType == xml.ELEMENT_NODE){
 							var tagname = $(el)[0].tagName;
 							idDiv = $('#'+tagname).parent().attr('id');
-							console.log(tagname + ' : ' + $(el).text());
+							//console.log(tagname + ' : ' + $(el).text());
 							var hlcolor = '#FFF8C6';
 							//Checkbox
 							if (tagname == 'comorbidades')
